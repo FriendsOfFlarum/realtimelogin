@@ -1,0 +1,34 @@
+{
+    "name": "fof/realtimelogin",
+    "description": "Makes humantime update in real time",
+    "keywords": [
+        "extension",
+        "flarum", "friends of flarum", "realtime"
+    ],
+    "type": "flarum-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Charlie Kern",
+            "email": "charlie.k@redevs.org",
+            "homepage": "https://redevs.org"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/friendsofflarum/realtimelogin/issues",
+        "source": "https://github.com/friendsofflarum/realtimelogin"
+    },
+    "require": {
+        "flarum/core": "^0.1.0-beta.11"
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "FoF Real Time Login",
+            "icon": {
+                "name": "fas fa-sign-in-alt",
+                "backgroundColor": "#e74c3c",
+                "color": "#fff"
+            }
+        }
+    }
+}

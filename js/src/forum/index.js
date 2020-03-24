@@ -29,7 +29,9 @@ app.initializers.add('fof-realtimelogin', () => {
             () =>{
                 app.store.find('users', data.username).then(user => {
                     app.session.user = user;
-                    app.store.find('forums').then(()=> {
+                    app.store.find('' +
+                        '' +
+                        '').then(()=> {
                         alertEmailConfirmation(app);
                         app.newLogin = true;
                         this.hide();
@@ -55,7 +57,7 @@ app.initializers.add('fof-realtimelogin', () => {
                 () => {
                     app.store.find('users', identification).then(user => {
                         app.session.user = user;
-                        app.store.find('forums').then(()=> {
+                        app.store.find('').then(()=> {
                             app.newLogin = true;
                             this.hide();
                             this.loaded.bind(this);

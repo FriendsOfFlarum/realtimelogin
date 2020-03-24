@@ -1,6 +1,6 @@
 {
     "name": "fof/realtimelogin",
-    "description": "Makes humantime update in real time",
+    "description": "Makes logins update in real time",
     "keywords": [
         "extension",
         "flarum", "friends of flarum", "realtime"

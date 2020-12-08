@@ -19,7 +19,7 @@
         "source": "https://github.com/friendsofflarum/realtimelogin"
     },
     "require": {
-        "flarum/core": "^0.1.0-beta.11"
+        "flarum/core": "^0.1.0-beta.14"
     },
     "extra": {
         "flarum-extension": {

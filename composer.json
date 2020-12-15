@@ -16,14 +16,23 @@
     ],
     "support": {
         "issues": "https://github.com/friendsofflarum/realtimelogin/issues",
-        "source": "https://github.com/friendsofflarum/realtimelogin"
+        "source": "https://github.com/friendsofflarum/realtimelogin",
+        "forum": "https://discuss.flarum.org/d/23220"
     },
+    "homepage": "https://friendsofflarum.org",
+    "funding": [
+        {
+            "type": "website",
+            "url": "https://opencollective.com/fof/donate"
+        }
+    ],
     "require": {
         "flarum/core": "^0.1.0-beta.14"
     },
     "extra": {
         "flarum-extension": {
             "title": "FoF Real Time Login",
+            "category": "feature",
             "icon": {
                 "name": "fas fa-sign-in-alt",
                 "backgroundColor": "#e74c3c",

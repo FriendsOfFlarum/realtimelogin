@@ -1,9 +1,9 @@
-import app from 'flarum/app';
-import alertEmailConfirmation from 'flarum/utils/alertEmailConfirmation';
-import { extend, override } from 'flarum/extend';
-import LogInModal from 'flarum/components/LogInModal';
-import DiscussionList from 'flarum/components/DiscussionList';
-import SignUpModal from 'flarum/components/SignUpModal';
+import app from 'flarum/forum/app';
+import alertEmailConfirmation from 'flarum/forum/utils/alertEmailConfirmation';
+import { extend, override } from 'flarum/common/extend';
+import LogInModal from 'flarum/forum/components/LogInModal';
+import DiscussionList from 'flarum/forum/components/DiscussionList';
+import SignUpModal from 'flarum/forum/components/SignUpModal';
 
 app.initializers.add('fof-realtimelogin', () => {
     extend(DiscussionList.prototype, 'view', function () {
@@ -25,8 +25,8 @@ app.initializers.add('fof-realtimelogin', () => {
             data,
             errorHandler: this.onerror.bind(this),
         }).then(() => {
-            app.store.find('users', data.username).then((user) => {
-                app.session.user = user;
+            app.store.find('users', { filter: { username: data.username }, page: { limit: 1 } }).then((user) => {
+                app.session.user = user[0];
                 app.store.find('' + '' + '').then(() => {
                     alertEmailConfirmation(app);
                     app.newLogin = true;
@@ -47,8 +47,8 @@ app.initializers.add('fof-realtimelogin', () => {
         const remember = this.remember();
 
         app.session.login({ identification, password, remember }, { errorHandler: this.onerror.bind(this) }).then(() => {
-            app.store.find('users', identification).then((user) => {
-                app.session.user = user;
+            app.store.find('users', { filter: { username: identification }, page: { limit: 1 } }).then((user) => {
+                app.session.user = user[0];
                 app.store.find('').then(() => {
                     app.newLogin = true;
                     this.hide();

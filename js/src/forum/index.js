@@ -67,12 +67,12 @@ app.initializers.add('fof-realtimelogin', () => {
 
         await app.session.login({ identification, password, remember }, { errorHandler: this.onerror.bind(this) });
 
-        const user = await app.store.find('users', {
+        const tempUser = await app.store.find('users', {
             filter: { username: identification },
             page: { limit: 1 },
         });
 
-        app.session.user = user[0];
+        app.session.user = await app.store.find('users', tempUser[0].id());
         await loadBaseApiData();
 
         app.newLogin = true;

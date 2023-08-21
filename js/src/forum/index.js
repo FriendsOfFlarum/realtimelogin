@@ -62,20 +62,19 @@ app.initializers.add('fof-realtimelogin', () => {
 
         this.loading = true;
 
-        const identification = this.identification();
-        const password = this.password();
-        const remember = this.remember();
+        const loginData = this.loginParams();
 
-        await app.session.login({ identification, password, remember }, { errorHandler: this.onerror.bind(this) });
+        const response = await app.session.login(loginData, { errorHandler: this.onerror.bind(this) }).catch(this.loaded.bind(this));
 
-        const tempUser = await app.store.find('users', {
-            filter: { username: identification },
-            page: { limit: 1 },
-        });
+        if (!response) return;
 
-        app.session.user = await app.store.find('users', tempUser[0].id());
+        const { token, userId } = response;
+
+        app.session.csrfToken = token;
+
         await loadBaseApiData();
 
+        app.session.user = app.store.getById('users', userId);
         app.newLogin = true;
 
         closeModal(this);

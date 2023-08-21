@@ -33,21 +33,22 @@ app.initializers.add('fof-realtimelogin', () => {
 
         this.loading = true;
 
-        const data = this.submitData();
+        const body = this.submitData();
 
-        await app.request({
-            url: app.forum.attribute('baseUrl') + '/register',
-            method: 'POST',
-            data,
-            errorHandler: this.onerror.bind(this),
-        });
+        const payload = await app
+            .request({
+                url: app.forum.attribute('baseUrl') + '/register',
+                method: 'POST',
+                body,
+                errorHandler: this.onerror.bind(this),
+            })
+            .catch(this.loaded.bind(this));
 
-        const user = await app.store.find('users', {
-            filter: { username: data.username },
-            page: { limit: 1 },
-        });
+        if (!payload) return;
 
-        app.session.user = user[0];
+        app.store.pushPayload(payload);
+        app.session.user = app.store.getById('users', payload.data.id);
+
         await loadBaseApiData();
 
         alertEmailConfirmation(app);

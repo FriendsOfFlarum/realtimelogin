@@ -3,7 +3,7 @@
   "name": "@fof/realtimelogin",
   "dependencies": {
     "flarum-webpack-config": "^2.0.2",
-    "webpack": "^5.88.2",
+    "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
